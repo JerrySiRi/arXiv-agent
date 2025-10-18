@@ -7,8 +7,14 @@ on:
 # 只有在这个时间，github action的workflow才会被启动 -- 修改的代码更新、做API推理等等
   schedule:
     - cron: "30 1 * * *"
-    - cron: "50 6 * * *"
+    - cron: "13 7 * * *"
   workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  TZ: Asis/Shanghai
 
 jobs:
   build:
@@ -47,15 +53,32 @@ jobs:
         # Use Scrapy to crawl
         scrapy crawl arxiv -o ../data/${today}.jsonl
         
+        # ------------- # 
         # 检查爬取是否成功 / Check if crawling was successful
-        if [ ! -f "../data/${today}.jsonl" ]; then
-            echo "爬取失败，未生成数据文件 / Crawling failed, no data file generated"
+        # if [ ! -f "../data/${today}.jsonl" ]; then
+            # echo "爬取失败，未生成数据文件 / Crawling failed, no data file generated"
+            # exit 1
+        # fi
+        # ------------- # 
+        
+
+        # ---- 关键：占位逻辑 ----
+        # 若文件不存在或为空（0 字节 / 无有效行），则写入占位记录
+          if [ ! -s "data/${today}.jsonl" ] || [ "$(grep -cve '^\s*$' data/${today}.jsonl || true)" -eq 0 ]; then
+            echo "未抓到有效数据，写入占位记录..."
+            cat > "data/${today}.jsonl" <<'EOF' {"date":"PLACEHOLDER","title":"(No new arXiv items today)","summary":"No new content or arXiv daily feed empty.","categories":[],"url":"","is_placeholder":true} EOF
+            
+            # 输出：声明今天是占位文件日
+            echo "placeholder_created=true" >> $GITHUB_OUTPUT
             exit 1
-        fi
-        
+          else
+            echo "placeholder_created=false" >> $GITHUB_OUTPUT
+          fi
+
         echo "crawl_date=$today" >> $GITHUB_OUTPUT
-        echo "爬取完成 / Crawling completed"
+        echo "爬取完成（含占位判定） / Crawling completed"
         
+
     - name: Check for duplicates
       id: dedup_check
       run: |
