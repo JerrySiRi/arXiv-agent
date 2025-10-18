@@ -70,7 +70,7 @@ jobs:
             # 输出：声明今天是占位文件日 & 退出之后workflow的判断
             echo "placeholder_created=true" >> $GITHUB_OUTPUT
             echo "占位文件生成 / Placeholder Created"
-            exit 1
+            # exit 1
           else
             echo "placeholder_created=false" >> $GITHUB_OUTPUT
           fi
