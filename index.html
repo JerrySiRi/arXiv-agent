@@ -178,8 +178,12 @@
             </div>
         </main>
 
+    <!-- 每一个论文点击后的功能 -->
+        <!-- 弹窗容器，用css控制显示/隐藏 -->
         <div class="paper-modal" id="paperModal">
+            <!-- 弹窗内容区，用于居中、投影等 -->
             <div class="paper-modal-content">
+                <!-- 上方：标题+右上角关闭按钮 -->
                 <div class="paper-modal-header">
                     <h2 id="modalTitle">Details</h2>
                     <button id="closeModal" class="icon-button">
@@ -190,15 +194,17 @@
                 </div>
                 <div class="paper-modal-body" id="modalBody">
                 </div>
+
+                <!-- 下方：左边 .paper-navigation 显示键盘提示与当前位置；右边 .paper-modal-buttons 放一组“图标按钮”（AI、PDF、HTML、arXiv） -->
                 <div class="paper-modal-footer">
                     <div class="paper-navigation">
-                        <span class="navigation-hint">← → to navigate • space for random</span>
+                        <span class="navigation-hint">More functions integrated</span>
                         <span id="paperPosition" class="paper-position">-</span>
                     </div>
                     <div class="paper-modal-buttons">
-                    <a id="kimiChatLink" href="#" target="_blank" class="button icon-button" title="Open in KimiChat">
+                    <a id="GPTChatLink" href="#" target="_blank" class="button icon-button" title="GPT深入解析该文章">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <text x="4" y="17" fill="#a42c25" font-family="Arial" font-weight="bold" font-size="14">AI</text>
+                            <text x="4" y="17" fill="#a42c25" font-family="Arial" font-weight="bold" font-size="14">ChatGPT</text>
                         </svg>
                     </a>
                     <a id="pdfLink" href="#" target="_blank" class="button icon-button" title="Open PDF">
