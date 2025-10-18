@@ -8,6 +8,7 @@
 - 删除重复论文条目，保留新内容 / Remove duplicate papers, keep new content
 - 根据去重后的结果决定工作流是否继续 / Decide workflow continuation based on deduplication results
 """
+
 import json
 import sys
 import os
@@ -62,7 +63,7 @@ def save_papers_data(papers, file_path):
 
 def perform_deduplication():
     """
-    执行多日去重：删除与历史多日重复的论文条目，保留新内容
+    执行多日去重：删除与历史多日重复的论文条目【爬取的网页地址是new，会有之前多日的内容】，保留新内容
     Perform deduplication over multiple past days
     
     Returns:
