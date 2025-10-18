@@ -62,7 +62,7 @@ jobs:
         # ------------- # 
         
 
-        # ---- 关键：占位逻辑，这里没有让exit 1 ----
+        # ---- 关键：占位逻辑----
         # 若文件不存在或为空（0 字节 / 无有效行），则写入占位记录
           if [ ! -s "data/${today}.jsonl" ] || [ "$(grep -cve '^\s*$' data/${today}.jsonl || true)" -eq 0 ]; then
             echo "未抓到有效数据，写入占位记录..."
@@ -70,7 +70,7 @@ jobs:
             # 输出：声明今天是占位文件日 & 退出之后workflow的判断
             echo "placeholder_created=true" >> $GITHUB_OUTPUT
             echo "占位文件生成 / Placeholder Created"
-            # exit 1
+            exit 1
           else
             echo "placeholder_created=false" >> $GITHUB_OUTPUT
           fi
