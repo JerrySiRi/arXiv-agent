@@ -46,4 +46,10 @@ Otherwise, you can directly use this repo in https://jerrysiri.github.io/arXiv-a
 9.  Set up GitHub pages: Go to your own repo -> Settings -> Pages. In `Build and deployment`, set `Source="Deploy from a branch"`, `Branch="main", "/(root)"`. Wait for a few minutes, go to https://\<username\>.github.io/daily-arXiv-ai-enhanced/. Please see this [issue](https://github.com/dw-dengwei/daily-arXiv-ai-enhanced/issues/14) for more precise instructions.
 
 # Plans
+
+Customized Plan:
+- Email function
+- Filtered (or ranked) by relevance
+- Interface from OpenReview (get instant feedback from reviewer's feedback for each paper)
+
 See original project page: https://github.com/users/dw-dengwei/projects/3
