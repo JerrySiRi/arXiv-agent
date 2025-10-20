@@ -49,6 +49,7 @@ Otherwise, you can directly use this repo in https://jerrysiri.github.io/arXiv-a
 
 Customized Plan:
 - Bug to be fixed: Web Spider is missing articles...
+- Images related to summary
 - Email function
 - Filtered (or ranked) by relevance
 - Interface from OpenReview (get instant feedback from reviewer's feedback for each paper)
