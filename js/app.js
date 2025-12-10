@@ -1268,7 +1268,21 @@ function showPaperDetails(paper, paperIndex) {
   document.getElementById('htmlLink').href = paper.url.replace('abs', 'html');
   // 提示词来自：https://papers.cool/
 
-  prompt = `请你阅读这篇文章${paper.url.replace('abs', 'pdf')}。在分析文章时，请总结并涵盖原始论文中的motivation并包含之前方法的不足、novel method、实验设计及结果、代码是否开源可复现并总结他们使用的代码框架、当前模型的limitations等内容，最后整体总结一下这篇文章的内容。`
+  prompt = ```
+  
+  请阅读这篇文章${paper.url.replace('abs', 'pdf')}。
+  
+  在分析文章时，请首先给出文章的TL;DR总结，随后按照以下格式进行分析总结：
+  
+  1. Motivation：请包含之前方法的不足、本文章的motivation是什么，以及文章的主要贡献点
+  
+  2. Novel method：请首先深入技术细节（给出关键的符号定义、公式推导，以及得出的定理或结论），随后详细说明文章搭建的pipeline或分析流程的具体步骤
+  
+  3. Experiments：请按照主实验设计（核心论点的验证）、各类消融实验（内部组件的贡献）、其他实验（可能包括创新性实验验证），并在每个部分中分析作者给出的实验结果和结论
+  
+  4. 其他：代码是否开源可复现并总结他们使用的代码框架、当前模型、模型或提出的理论的limitations
+  
+  5. 其他相似文章：请总结和这篇文章很相似的文章（related work），你可以参考原文的references并在网上进行搜索```
   
   // document.getElementById('kimiChatLink').href = `https://www.kimi.com/_prefill_chat?prefill_prompt=${prompt}&system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&send_immediately=true&force_search=true`;
   const encodedPrompt = encodeURIComponent(prompt);
